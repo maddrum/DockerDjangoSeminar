@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Djnago Docker Seminar</title>
+</head>
+<nav>
+    <a href="{% url 'index' %}">HOME</a> | <a href="{% url 'contact' %}">CONTACT ME</a>
+</nav>
+<body>
+<style>
+    nav {
+        color: darkslateblue;
+    }
+
+    nav > a {
+        color: indianred;
+    }
+
+    body {
+        margin-top: 20rem;
+        text-align: center
+    }
+</style>
+{% block body %}{% endblock %}
+</body>
+</html>

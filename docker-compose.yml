@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  web:
+    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    image: seminar/django:1.0
+    container_name: seminar.django
+    env_file: ./docker/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/project
+    links:
+      - db
+
+  python-black:
+    image: pyfound/black:latest
+    container_name: myhealth.python-black
+    command: blackd --bind-host 0.0.0.0 --bind-port 45484
+    ports:
+      - "45484:45484"
+
+  db:
+    image: mysql:8.0
+    container_name: seminar.db
+    command: --default-authentication-plugin=mysql_native_password
+    env_file: docker/.env
+    volumes:
+      - ./dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE

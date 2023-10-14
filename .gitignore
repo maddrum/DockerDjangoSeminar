@@ -1,2 +1,6 @@
 /.idea
+/dbdata
 /src/db.sqlite3
+/src/.cache
+/src/.local
+.bash_history
